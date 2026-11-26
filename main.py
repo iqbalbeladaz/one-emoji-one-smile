@@ -76,6 +76,9 @@ def main():
     out_dir = os.environ.get("OUTPUT_DIR", "/output")
     os.makedirs(out_dir, exist_ok=True)
     emoji, total = pick()
+    # Gate: the entry must be exactly one emoji character (the bounty
+    # allows 1-8 characters; a single face is the sharpest possible pick).
+    assert len(emoji) == 1, "entry must be exactly one character"
     path = os.path.join(out_dir, "entry.txt")
     # Exactly one emoji, nothing else: no trailing newline, no caption.
     with open(path, "w", encoding="utf-8", newline="") as f:
